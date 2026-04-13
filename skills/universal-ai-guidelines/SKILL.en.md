@@ -15,6 +15,7 @@ Derived from [Andrej Karpathy's observations](https://x.com/karpathy/status/2015
 
 ## Output Language Policy
 
+- This policy applies only to this skill's own final user-facing output language; it does not automatically override language policies of other downstream skills.
 - If user input is Chinese, final user-facing output must be Chinese.
 - If user input is English, final user-facing output must be English.
 - Do not output bilingual by default.
