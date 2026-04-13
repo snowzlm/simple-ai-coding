@@ -149,10 +149,27 @@ curl -o .github/copilot-instructions.md https://raw.githubusercontent.com/snowzl
 ### 方式 F：OpenClaw 原生插件包（可选）
 
 ```bash
+# 开发态（link）安装
 openclaw plugins install --link ./plugins/openclaw-universal-ai-guidelines
+
+# 打包为 tgz
+bash scripts/build-openclaw-plugin-package.sh
+
+# 从 tgz 安装
+openclaw plugins install ./dist/plugins/snowzlm-openclaw-universal-ai-guidelines-<version>.tgz
 ```
 
 > 说明：这是 OpenClaw 的原生插件/扩展包形态，与 Claude 插件机制不同。
+
+#### OpenClaw 插件发布级流程（版本 / 打包 / 验收）
+
+```bash
+# 版本升级并打包（patch/minor/major 或显式版本号）
+bash scripts/release-openclaw-plugin.sh patch
+
+# 安装验收（link + tgz 两条链路）
+bash scripts/acceptance-openclaw-plugin.sh
+```
 
 ## Skill 文件语言落地（用户端）
 

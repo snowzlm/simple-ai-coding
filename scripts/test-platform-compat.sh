@@ -24,6 +24,9 @@ check_file "skills/universal-ai-guidelines/SKILL.zh-CN.md"
 check_file "skills/universal-ai-guidelines/SKILL.en.md"
 check_file "scripts/materialize-skill-language.sh"
 check_file "scripts/build-openclaw-skill.sh"
+check_file "scripts/build-openclaw-plugin-package.sh"
+check_file "scripts/release-openclaw-plugin.sh"
+check_file "scripts/acceptance-openclaw-plugin.sh"
 check_file "plugins/openclaw-universal-ai-guidelines/package.json"
 check_file "plugins/openclaw-universal-ai-guidelines/openclaw.plugin.json"
 check_file "plugins/openclaw-universal-ai-guidelines/index.js"
@@ -118,6 +121,12 @@ pass "openclaw plugin package metadata verified"
 
 node -e "import('./plugins/openclaw-universal-ai-guidelines/index.js').then(m=>{const p=m.default||{};if(p.id!=='universal-ai-guidelines'||typeof p.register!=='function'){throw new Error('plugin entry invalid')}console.log('ok')})" >/dev/null
 pass "openclaw plugin entry smoke verified"
+
+TMP_PACK_DIR="$(mktemp -d)"
+trap 'rm -rf "$TMP_PACK_DIR"' EXIT
+bash scripts/build-openclaw-plugin-package.sh "plugins/openclaw-universal-ai-guidelines" "$TMP_PACK_DIR" >/dev/null
+ls "$TMP_PACK_DIR"/*.tgz >/dev/null
+pass "openclaw plugin tgz build verified"
 
 # 8) Links check (except acknowledgements)
 if grep -RIn "raw\.githubusercontent\.com/forrestchang\|forrestchang/andrej-karpathy-skills" README.md README.en.md | grep -v "上游\|Upstream" >/dev/null; then

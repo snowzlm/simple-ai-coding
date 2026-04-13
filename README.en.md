@@ -149,10 +149,27 @@ curl -o .github/copilot-instructions.md https://raw.githubusercontent.com/snowzl
 ### Option F: OpenClaw native plugin pack (optional)
 
 ```bash
+# Dev install (link mode)
 openclaw plugins install --link ./plugins/openclaw-universal-ai-guidelines
+
+# Build tgz package
+bash scripts/build-openclaw-plugin-package.sh
+
+# Install from tgz
+openclaw plugins install ./dist/plugins/snowzlm-openclaw-universal-ai-guidelines-<version>.tgz
 ```
 
 > Note: this is OpenClaw's native plugin/extension package flow, not Claude plugin runtime.
+
+#### OpenClaw plugin release-grade flow (version / package / acceptance)
+
+```bash
+# Bump version and package (patch/minor/major or explicit semver)
+bash scripts/release-openclaw-plugin.sh patch
+
+# Installation acceptance (both link + tgz paths)
+bash scripts/acceptance-openclaw-plugin.sh
+```
 
 ## Skill Content Materialization (user-side)
 

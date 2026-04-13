@@ -4,6 +4,11 @@
   "private": true,
   "type": "module",
   "description": "OpenClaw plugin wrapper for universal AI coding guidelines",
+  "files": [
+    "index.js",
+    "openclaw.plugin.json",
+    "skills"
+  ],
   "openclaw": {
     "extensions": [
       "./index.js"
