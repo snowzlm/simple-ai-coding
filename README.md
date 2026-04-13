@@ -1,163 +1,167 @@
-[中文文档 / Chinese](./README.zh-CN.md)
+[English](./README.en.md)
 
-# Karpathy-Inspired Claude Code Guidelines
+# Karpathy 启发的 Claude Code 指南
 
-A single `CLAUDE.md` file to improve Claude Code behavior, derived from [Andrej Karpathy's observations](https://x.com/karpathy/status/2015883857489522876) on LLM coding pitfalls.
+一个 `CLAUDE.md` 文件，用来改进 Claude Code 的行为。内容基于 [Andrej Karpathy 对 LLM 编码常见问题的观察](https://x.com/karpathy/status/2015883857489522876)。
 
-## The Problems
+## 问题
 
-From Andrej's post:
+来自 Andrej 的原话：
 
-> "The models make wrong assumptions on your behalf and just run along with them without checking. They don't manage their confusion, don't seek clarifications, don't surface inconsistencies, don't present tradeoffs, don't push back when they should."
+> “模型会替你做错误假设，并在不检查的情况下一路执行。它们不会管理自己的困惑，不会主动澄清，不会暴露不一致，不会给出权衡，也不会在该反驳时反驳。”
 
-> "They really like to overcomplicate code and APIs, bloat abstractions, don't clean up dead code... implement a bloated construction over 1000 lines when 100 would do."
+> “它们很喜欢把代码和 API 过度复杂化，抽象臃肿，不清理死代码……本来 100 行能搞定，却实现了 1000+ 行的臃肿方案。”
 
-> "They still sometimes change/remove comments and code they don't sufficiently understand as side effects, even if orthogonal to the task."
+> “它们有时还会改动/删除自己并不真正理解的注释和代码，哪怕这些改动与当前任务无关。”
 
-## The Solution
+## 解决方案
 
-Four principles in one file that directly address these issues:
+把四条原则写进一个文件，直接对齐这些问题：
 
-| Principle | Addresses |
-|-----------|-----------|
-| **Think Before Coding** | Wrong assumptions, hidden confusion, missing tradeoffs |
-| **Simplicity First** | Overcomplication, bloated abstractions |
-| **Surgical Changes** | Orthogonal edits, touching code you shouldn't |
-| **Goal-Driven Execution** | Leverage through tests-first, verifiable success criteria |
+| 原则 | 解决的问题 |
+|------|------------|
+| **先思考再编码（Think Before Coding）** | 错误假设、隐藏困惑、缺失权衡 |
+| **简单优先（Simplicity First）** | 过度复杂化、抽象膨胀 |
+| **手术式改动（Surgical Changes）** | 无关改动、误碰不该改的代码 |
+| **目标驱动执行（Goal-Driven Execution）** | 用“测试先行 + 可验证成功标准”提升杠杆 |
 
-## The Four Principles in Detail
+## 四条原则详解
 
-### 1. Think Before Coding
+### 1. 先思考再编码
 
-**Don't assume. Don't hide confusion. Surface tradeoffs.**
+**不要臆测，不要掩盖困惑，要暴露权衡。**
 
-LLMs often pick an interpretation silently and run with it. This principle forces explicit reasoning:
+LLM 常会默默选择一种理解然后一路写下去。该原则要求显式推理：
 
-- **State assumptions explicitly** — If uncertain, ask rather than guess
-- **Present multiple interpretations** — Don't pick silently when ambiguity exists
-- **Push back when warranted** — If a simpler approach exists, say so
-- **Stop when confused** — Name what's unclear and ask for clarification
+- **显式写出假设** —— 不确定时先问，不要猜
+- **呈现多种解释** —— 存在歧义时不要静默选一个
+- **必要时提出反驳** —— 若有更简单方案，应明确指出
+- **困惑时先停下** —— 说清不明确点并请求澄清
 
-### 2. Simplicity First
+### 2. 简单优先
 
-**Minimum code that solves the problem. Nothing speculative.**
+**用最少代码解决问题，不做猜测性扩展。**
 
-Combat the tendency toward overengineering:
+对抗过度工程倾向：
 
-- No features beyond what was asked
-- No abstractions for single-use code
-- No "flexibility" or "configurability" that wasn't requested
-- No error handling for impossible scenarios
-- If 200 lines could be 50, rewrite it
+- 不做需求之外的功能
+- 不为一次性代码提前抽象
+- 不做未被要求的“灵活性/可配置性”
+- 不为不可能场景写错误处理
+- 若 200 行可以写成 50 行，就重写
 
-**The test:** Would a senior engineer say this is overcomplicated? If yes, simplify.
+**自检标准：** 如果资深工程师会认为它过度复杂，就继续简化。
 
-### 3. Surgical Changes
+### 3. 手术式改动
 
-**Touch only what you must. Clean up only your own mess.**
+**只改必须改的；只清理你自己制造的冗余。**
 
-When editing existing code:
+修改现有代码时：
 
-- Don't "improve" adjacent code, comments, or formatting
-- Don't refactor things that aren't broken
-- Match existing style, even if you'd do it differently
-- If you notice unrelated dead code, mention it — don't delete it
+- 不“顺手优化”邻近代码、注释或格式
+- 不重构未损坏部分
+- 即使你有偏好，也应匹配现有风格
+- 发现无关死代码可以提示，但不要直接删
 
-When your changes create orphans:
+当你的改动引入孤儿代码时：
 
-- Remove imports/variables/functions that YOUR changes made unused
-- Don't remove pre-existing dead code unless asked
+- 删除 **你这次改动导致** 未使用的 import/变量/函数
+- 不删除历史遗留死代码（除非用户明确要求）
 
-**The test:** Every changed line should trace directly to the user's request.
+**自检标准：** 每一行改动都应可直接追溯到用户请求。
 
-### 4. Goal-Driven Execution
+### 4. 目标驱动执行
 
-**Define success criteria. Loop until verified.**
+**先定义成功标准，再循环到验证通过。**
 
-Transform imperative tasks into verifiable goals:
+把命令式任务转成可验证目标：
 
-| Instead of... | Transform to... |
-|--------------|-----------------|
-| "Add validation" | "Write tests for invalid inputs, then make them pass" |
-| "Fix the bug" | "Write a test that reproduces it, then make it pass" |
-| "Refactor X" | "Ensure tests pass before and after" |
+| 不要只说… | 应转成… |
+|-----------|----------|
+| “加校验” | “先写非法输入测试，再让测试通过” |
+| “修 bug” | “先写可复现测试，再让测试通过” |
+| “重构 X” | “确保重构前后测试都通过” |
 
-For multi-step tasks, state a brief plan:
+对多步骤任务，先给简要计划：
 
+```text
+1. [步骤] → 验证: [检查项]
+2. [步骤] → 验证: [检查项]
+3. [步骤] → 验证: [检查项]
 ```
-1. [Step] → verify: [check]
-2. [Step] → verify: [check]
-3. [Step] → verify: [check]
-```
 
-Strong success criteria let the LLM loop independently. Weak criteria ("make it work") require constant clarification.
+强成功标准能让 LLM 自主闭环；弱标准（如“让它能用”）会导致频繁澄清。
 
-## Install
+## 安装
 
-**Option A: Claude Code Plugin (recommended)**
+**方式 A：Claude Code 插件（推荐）**
 
-From within Claude Code, first add the marketplace:
-```
+在 Claude Code 中先添加 marketplace：
+
+```text
 /plugin marketplace add forrestchang/andrej-karpathy-skills
 ```
 
-Then install the plugin:
-```
+然后安装插件：
+
+```text
 /plugin install andrej-karpathy-skills@karpathy-skills
 ```
 
-This installs the guidelines as a Claude Code plugin, making the skill available across all your projects.
+这会把该指南作为 Claude Code 插件安装，使技能可跨项目复用。
 
-**Option B: CLAUDE.md (per-project)**
+**方式 B：CLAUDE.md（按项目）**
 
-New project:
+新项目：
+
 ```bash
 curl -o CLAUDE.md https://raw.githubusercontent.com/forrestchang/andrej-karpathy-skills/main/CLAUDE.md
 ```
 
-Existing project (append):
+已有项目（追加）：
+
 ```bash
 echo "" >> CLAUDE.md
 curl https://raw.githubusercontent.com/forrestchang/andrej-karpathy-skills/main/CLAUDE.md >> CLAUDE.md
 ```
 
-## Key Insight
+## 关键洞见
 
-From Andrej:
+Andrej 的观点：
 
-> "LLMs are exceptionally good at looping until they meet specific goals... Don't tell it what to do, give it success criteria and watch it go."
+> “LLM 在围绕明确目标持续循环直到达成方面非常强……不要只告诉它做什么，而要给它成功标准。”
 
-The "Goal-Driven Execution" principle captures this: transform imperative instructions into declarative goals with verification loops.
+“目标驱动执行”正是这个思想：把命令式要求改写成带验证循环的声明式目标。
 
-## How to Know It's Working
+## 如何判断它生效了
 
-These guidelines are working if you see:
+当你看到这些变化时，说明规则在发挥作用：
 
-- **Fewer unnecessary changes in diffs** — Only requested changes appear
-- **Fewer rewrites due to overcomplication** — Code is simple the first time
-- **Clarifying questions come before implementation** — Not after mistakes
-- **Clean, minimal PRs** — No drive-by refactoring or "improvements"
+- **diff 中无关改动更少** —— 基本只出现被请求的改动
+- **因过度设计导致的返工更少** —— 首次实现就更简洁
+- **实现前先澄清，而不是出错后再补问**
+- **PR 更干净、更小、更聚焦** —— 不再有顺手重构/顺手优化
 
-## Customization
+## 自定义
 
-These guidelines are designed to be merged with project-specific instructions. Add them to your existing `CLAUDE.md` or create a new one.
+这些规则设计为可与项目专属规则合并。你可以并入现有 `CLAUDE.md`，或新建一个。
 
-For project-specific rules, add sections like:
+例如：
 
 ```markdown
-## Project-Specific Guidelines
+## 项目专属规则
 
-- Use TypeScript strict mode
-- All API endpoints must have tests
-- Follow the existing error handling patterns in `src/utils/errors.ts`
+- TypeScript 使用 strict 模式
+- 所有 API 端点必须有测试
+- 错误处理遵循 `src/utils/errors.ts` 的既有模式
 ```
 
-## Tradeoff Note
+## 取舍说明
 
-These guidelines bias toward **caution over speed**. For trivial tasks (simple typo fixes, obvious one-liners), use judgment — not every change needs the full rigor.
+这套规则偏向 **谨慎优先而非速度优先**。对极小改动（如拼写修复、明显单行修改）可适当降低流程强度。
 
-The goal is reducing costly mistakes on non-trivial work, not slowing down simple tasks.
+目标不是拖慢简单任务，而是减少中等以上复杂任务中的高成本失误。
 
-## License
+## 许可证
 
 MIT
