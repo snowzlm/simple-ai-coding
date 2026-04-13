@@ -1,8 +1,6 @@
-# CLAUDE.md
+# AI_RULES.md
 
-Platform adapter for Claude.
-
-> Source baseline: `AI_RULES.md`.
+Universal behavior guidelines for AI coding agents.
 
 ## Priority & Conflict Policy
 

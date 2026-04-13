@@ -1,5 +1,5 @@
 ---
-name: simple-ai-coding-guidelines
+name: universal-ai-guidelines
 description: Bilingual coding-behavior guidelines for AI coding agents. Use when writing, reviewing, or refactoring code to avoid overengineering, keep changes surgical, surface assumptions early, and execute by verifiable success criteria.
 ---
 
@@ -88,3 +88,16 @@ Use a short verifiable plan for multi-step tasks:
 2. [Step] → verify: [check]
 3. [Step] → verify: [check]
 ```
+
+
+## Output Language Policy / 输出语言策略
+
+- 用户使用中文时，最终交付给用户的内容必须是中文。
+- 用户使用英文时，最终交付给用户的内容必须是英文。
+- 默认不输出双语版本。
+- 仅在用户明确要求双语时，才输出双语。
+
+- If user input is Chinese, final user-facing output must be Chinese.
+- If user input is English, final user-facing output must be English.
+- Do not output bilingual by default.
+- Only output bilingual when explicitly requested by the user.

@@ -5,23 +5,25 @@
     "name": "snowzlm"
   },
   "metadata": {
-    "description": "Behavioral guidelines to reduce common LLM coding mistakes, derived from Andrej Karpathy's observations",
+    "description": "Universal AI coding-agent behavior guidelines for OpenClaw, Codex, Claude, and more",
     "version": "1.0.0"
   },
   "plugins": [
     {
       "name": "simple-ai-coding",
       "source": "./",
-      "description": "Behavioral guidelines to reduce common LLM coding mistakes: Think Before Coding, Simplicity First, Surgical Changes, Goal-Driven Execution",
+      "description": "Universal AI coding-agent behavior guidelines: Think Before Coding, Simplicity First, Surgical Changes, Goal-Driven Execution",
       "version": "1.0.0",
       "author": {
         "name": "snowzlm"
       },
       "keywords": [
         "guidelines",
-        "best-practices",
-        "coding",
-        "karpathy"
+        "ai-agent",
+        "openclaw",
+        "codex",
+        "claude",
+        "copilot"
       ],
       "category": "workflow"
     }

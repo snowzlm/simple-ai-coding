@@ -1,6 +1,6 @@
 {
   "name": "simple-ai-coding",
-  "description": "Behavioral guidelines to reduce common LLM coding mistakes, derived from Andrej Karpathy's observations on LLM coding pitfalls",
+  "description": "Universal AI coding-agent behavior guidelines (OpenClaw, Codex, Claude, Copilot)",
   "version": "1.0.0",
   "author": {
     "name": "snowzlm"
@@ -8,11 +8,13 @@
   "license": "MIT",
   "keywords": [
     "guidelines",
-    "best-practices",
-    "coding",
-    "karpathy"
+    "ai-agent",
+    "openclaw",
+    "codex",
+    "claude",
+    "copilot"
   ],
   "skills": [
-    "./skills/simple-ai-coding-guidelines"
+    "./skills/universal-ai-guidelines"
   ]
 }

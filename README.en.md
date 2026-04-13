@@ -1,16 +1,20 @@
 [中文](./README.md)
 
-# Karpathy-Inspired Claude Code Guidelines
+# Karpathy-Inspired AI Coding Agent Guidelines
 
-A single `CLAUDE.md` file to improve Claude Code behavior, derived from [Andrej Karpathy's observations](https://x.com/karpathy/status/2015883857489522876) on LLM coding pitfalls.
+A lightweight ruleset (`AI_RULES.md` + platform adapters) to improve AI coding-agent behavior, derived from [Andrej Karpathy's observations](https://x.com/karpathy/status/2015883857489522876) on LLM coding pitfalls.
 
 ## Project Notes
 
-This repository is a lightweight behavior-guidelines toolkit for mainstream AI coding platforms:
+This repository is a lightweight behavior-guidelines toolkit for AI coding agents, using `AI_RULES.md` as the canonical baseline plus platform adapters.
+
+Current coverage:
 
 - **OpenClaw** via `AGENTS.md`
 - **Codex** via `AGENTS.md`
-- **Claude** via `CLAUDE.md` or plugin mode
+- **Claude** via `CLAUDE.md`
+- **GitHub Copilot** via `.github/copilot-instructions.md`
+- **Other platforms** via `AI_RULES.md`
 
 ## The Problems
 
@@ -102,43 +106,47 @@ Strong success criteria let the LLM loop independently. Weak criteria ("make it 
 
 ## Install
 
-### Option A: OpenClaw (recommended)
+### Option A: Universal baseline (recommended)
 
-Place `AGENTS.md` in your project root:
+```bash
+curl -o AI_RULES.md https://raw.githubusercontent.com/snowzlm/simple-ai-coding/main/AI_RULES.md
+```
+
+### Option B: OpenClaw / Codex
 
 ```bash
 curl -o AGENTS.md https://raw.githubusercontent.com/snowzlm/simple-ai-coding/main/AGENTS.md
 ```
 
-### Option B: Codex
-
-Place `AGENTS.md` in your project root:
-
-```bash
-curl -o AGENTS.md https://raw.githubusercontent.com/snowzlm/simple-ai-coding/main/AGENTS.md
-```
-
-### Option C: Claude (file mode)
-
-Place `CLAUDE.md` in your project root:
+### Option C: Claude
 
 ```bash
 curl -o CLAUDE.md https://raw.githubusercontent.com/snowzlm/simple-ai-coding/main/CLAUDE.md
 ```
 
-Existing project (append):
+### Option D: GitHub Copilot
 
 ```bash
-echo "" >> CLAUDE.md
-curl https://raw.githubusercontent.com/snowzlm/simple-ai-coding/main/CLAUDE.md >> CLAUDE.md
+mkdir -p .github
+curl -o .github/copilot-instructions.md https://raw.githubusercontent.com/snowzlm/simple-ai-coding/main/.github/copilot-instructions.md
 ```
 
-### Option D: Claude plugin (optional)
+### Option E: Claude plugin (optional)
 
 ```text
 /plugin marketplace add snowzlm/simple-ai-coding
 /plugin install simple-ai-coding@simple-ai-coding
 ```
+
+## Platform Compatibility Tests (verified in this repo)
+
+Run:
+
+```bash
+bash scripts/test-platform-compat.sh
+```
+
+Covers OpenClaw, Codex, Claude, Copilot, and baseline consistency checks.
 
 ## Key Insight
 
