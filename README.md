@@ -118,7 +118,7 @@ curl -o AI_RULES.md https://raw.githubusercontent.com/snowzlm/simple-ai-coding/m
 curl -o AGENTS.md https://raw.githubusercontent.com/snowzlm/simple-ai-coding/main/AGENTS.md
 ```
 
-说明：OpenClaw 当前建议使用 `AGENTS.md` 或 `.skill` 包方式，不走 Claude 的插件机制。
+说明：OpenClaw 当前可使用 `AGENTS.md`、`.skill` 包，或 OpenClaw 原生插件包；不走 Claude 的插件机制。
 
 生成本地 `.skill` 包：
 
@@ -145,6 +145,14 @@ curl -o .github/copilot-instructions.md https://raw.githubusercontent.com/snowzl
 /plugin marketplace add snowzlm/simple-ai-coding
 /plugin install simple-ai-coding@simple-ai-coding
 ```
+
+### 方式 F：OpenClaw 原生插件包（可选）
+
+```bash
+openclaw plugins install --link ./plugins/openclaw-universal-ai-guidelines
+```
+
+> 说明：这是 OpenClaw 的原生插件/扩展包形态，与 Claude 插件机制不同。
 
 ## Skill 文件语言落地（用户端）
 

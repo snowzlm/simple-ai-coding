@@ -1,0 +1,12 @@
+{
+  "name": "@snowzlm/openclaw-universal-ai-guidelines",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "OpenClaw plugin wrapper for universal AI coding guidelines",
+  "openclaw": {
+    "extensions": [
+      "./index.js"
+    ]
+  }
+}

@@ -118,7 +118,7 @@ curl -o AI_RULES.md https://raw.githubusercontent.com/snowzlm/simple-ai-coding/m
 curl -o AGENTS.md https://raw.githubusercontent.com/snowzlm/simple-ai-coding/main/AGENTS.md
 ```
 
-Note: OpenClaw currently uses `AGENTS.md` or `.skill` package flow, not Claude plugin runtime.
+Note: OpenClaw can use `AGENTS.md`, `.skill` package flow, or OpenClaw native plugin pack; it does not use Claude plugin runtime.
 
 Build local `.skill` package:
 
@@ -145,6 +145,14 @@ curl -o .github/copilot-instructions.md https://raw.githubusercontent.com/snowzl
 /plugin marketplace add snowzlm/simple-ai-coding
 /plugin install simple-ai-coding@simple-ai-coding
 ```
+
+### Option F: OpenClaw native plugin pack (optional)
+
+```bash
+openclaw plugins install --link ./plugins/openclaw-universal-ai-guidelines
+```
+
+> Note: this is OpenClaw's native plugin/extension package flow, not Claude plugin runtime.
 
 ## Skill Content Materialization (user-side)
 

@@ -1,0 +1,14 @@
+{
+  "id": "universal-ai-guidelines",
+  "name": "Universal AI Guidelines",
+  "description": "OpenClaw plugin pack for universal AI coding guidelines",
+  "enabledByDefault": true,
+  "skills": [
+    "./skills"
+  ],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}
