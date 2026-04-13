@@ -4,6 +4,14 @@
 
 A single `CLAUDE.md` file to improve Claude Code behavior, derived from [Andrej Karpathy's observations](https://x.com/karpathy/status/2015883857489522876) on LLM coding pitfalls.
 
+## Project Notes
+
+This repository is a lightweight behavior-guidelines toolkit for mainstream AI coding platforms:
+
+- **OpenClaw** via `AGENTS.md`
+- **Codex** via `AGENTS.md`
+- **Claude** via `CLAUDE.md` or plugin mode
+
 ## The Problems
 
 From Andrej's post:
@@ -94,31 +102,42 @@ Strong success criteria let the LLM loop independently. Weak criteria ("make it 
 
 ## Install
 
-**Option A: Claude Code Plugin (recommended)**
+### Option A: OpenClaw (recommended)
 
-From within Claude Code, first add the marketplace:
-```
-/plugin marketplace add forrestchang/andrej-karpathy-skills
-```
+Place `AGENTS.md` in your project root:
 
-Then install the plugin:
-```
-/plugin install andrej-karpathy-skills@karpathy-skills
-```
-
-This installs the guidelines as a Claude Code plugin, making the skill available across all your projects.
-
-**Option B: CLAUDE.md (per-project)**
-
-New project:
 ```bash
-curl -o CLAUDE.md https://raw.githubusercontent.com/forrestchang/andrej-karpathy-skills/main/CLAUDE.md
+curl -o AGENTS.md https://raw.githubusercontent.com/snowzlm/simple-ai-coding/main/AGENTS.md
+```
+
+### Option B: Codex
+
+Place `AGENTS.md` in your project root:
+
+```bash
+curl -o AGENTS.md https://raw.githubusercontent.com/snowzlm/simple-ai-coding/main/AGENTS.md
+```
+
+### Option C: Claude (file mode)
+
+Place `CLAUDE.md` in your project root:
+
+```bash
+curl -o CLAUDE.md https://raw.githubusercontent.com/snowzlm/simple-ai-coding/main/CLAUDE.md
 ```
 
 Existing project (append):
+
 ```bash
 echo "" >> CLAUDE.md
-curl https://raw.githubusercontent.com/forrestchang/andrej-karpathy-skills/main/CLAUDE.md >> CLAUDE.md
+curl https://raw.githubusercontent.com/snowzlm/simple-ai-coding/main/CLAUDE.md >> CLAUDE.md
+```
+
+### Option D: Claude plugin (optional)
+
+```text
+/plugin marketplace add snowzlm/simple-ai-coding
+/plugin install simple-ai-coding@simple-ai-coding
 ```
 
 ## Key Insight
@@ -161,3 +180,8 @@ The goal is reducing costly mistakes on non-trivial work, not slowing down simpl
 ## License
 
 MIT
+
+## Acknowledgements
+
+- Upstream project: [`forrestchang/andrej-karpathy-skills`](https://github.com/forrestchang/andrej-karpathy-skills) (@forrestchang)
+- Original inspiration: [Andrej Karpathy's source thread](https://x.com/karpathy/status/2015883857489522876) (@karpathy)
