@@ -23,6 +23,7 @@ check_file "skills/universal-ai-guidelines/SKILL.md"
 check_file "skills/universal-ai-guidelines/SKILL.zh-CN.md"
 check_file "skills/universal-ai-guidelines/SKILL.en.md"
 check_file "scripts/materialize-skill-language.sh"
+check_file "scripts/build-openclaw-skill.sh"
 
 grep -q "Language Scope Policy" AI_RULES.md && pass "AI_RULES language scope present" || fail "AI_RULES language scope missing"
 if grep -q "Language Output Policy" AI_RULES.md; then
@@ -82,9 +83,15 @@ pl = json.loads(Path('.claude-plugin/plugin.json').read_text(encoding='utf-8'))
 skills = pl.get('skills') or []
 if './skills/universal-ai-guidelines' not in skills:
     print('plugin skills path mismatch'); sys.exit(1)
+if 'OpenClaw' in (pl.get('description') or ''):
+    print('plugin description should not imply OpenClaw plugin runtime'); sys.exit(1)
+
+mk = json.loads(Path('.claude-plugin/marketplace.json').read_text(encoding='utf-8'))
+if 'OpenClaw' in ((mk.get('metadata') or {}).get('description') or ''):
+    print('marketplace metadata should not imply OpenClaw plugin runtime'); sys.exit(1)
 print('ok')
 PY
-pass "plugin metadata path verified"
+pass "plugin metadata path and scope verified"
 
 # 7) Links check (except acknowledgements)
 if grep -RIn "raw\.githubusercontent\.com/forrestchang\|forrestchang/andrej-karpathy-skills" README.md README.en.md | grep -v "上游\|Upstream" >/dev/null; then

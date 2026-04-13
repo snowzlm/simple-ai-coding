@@ -1,6 +1,6 @@
 {
   "name": "simple-ai-coding",
-  "description": "Universal AI coding-agent behavior guidelines (OpenClaw, Codex, Claude, Copilot)",
+  "description": "Universal AI coding-agent behavior guidelines for Claude plugin runtime", 
   "version": "1.0.0",
   "author": {
     "name": "snowzlm"

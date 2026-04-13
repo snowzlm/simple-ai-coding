@@ -118,6 +118,14 @@ curl -o AI_RULES.md https://raw.githubusercontent.com/snowzlm/simple-ai-coding/m
 curl -o AGENTS.md https://raw.githubusercontent.com/snowzlm/simple-ai-coding/main/AGENTS.md
 ```
 
+说明：OpenClaw 当前建议使用 `AGENTS.md` 或 `.skill` 包方式，不走 Claude 的插件机制。
+
+生成本地 `.skill` 包：
+
+```bash
+bash scripts/build-openclaw-skill.sh
+```
+
 ### 方式 C：Claude
 
 ```bash

@@ -118,6 +118,14 @@ curl -o AI_RULES.md https://raw.githubusercontent.com/snowzlm/simple-ai-coding/m
 curl -o AGENTS.md https://raw.githubusercontent.com/snowzlm/simple-ai-coding/main/AGENTS.md
 ```
 
+Note: OpenClaw currently uses `AGENTS.md` or `.skill` package flow, not Claude plugin runtime.
+
+Build local `.skill` package:
+
+```bash
+bash scripts/build-openclaw-skill.sh
+```
+
 ### Option C: Claude
 
 ```bash
