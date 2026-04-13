@@ -24,13 +24,24 @@ check_file "skills/universal-ai-guidelines/SKILL.zh-CN.md"
 check_file "skills/universal-ai-guidelines/SKILL.en.md"
 check_file "scripts/materialize-skill-language.sh"
 
+grep -q "Language Scope Policy" AI_RULES.md && pass "AI_RULES language scope present" || fail "AI_RULES language scope missing"
+if grep -q "Language Output Policy" AI_RULES.md; then
+  fail "AI_RULES still contains global language output policy"
+fi
+
 # 2) OpenClaw/Codex compatibility (AGENTS)
 grep -q "Priority & Conflict Policy" AGENTS.md && pass "AGENTS policy section present" || fail "AGENTS policy missing"
-grep -q "Language Output Policy" AGENTS.md && pass "AGENTS language policy present" || fail "AGENTS language policy missing"
+grep -q "Language Scope Policy" AGENTS.md && pass "AGENTS language scope present" || fail "AGENTS language scope missing"
+if grep -q "Language Output Policy" AGENTS.md; then
+  fail "AGENTS still contains global language output policy"
+fi
 
 # 3) Claude compatibility (CLAUDE)
 grep -q "Priority & Conflict Policy" CLAUDE.md && pass "CLAUDE policy section present" || fail "CLAUDE policy missing"
-grep -q "Language Output Policy" CLAUDE.md && pass "CLAUDE language policy present" || fail "CLAUDE language policy missing"
+grep -q "Language Scope Policy" CLAUDE.md && pass "CLAUDE language scope present" || fail "CLAUDE language scope missing"
+if grep -q "Language Output Policy" CLAUDE.md; then
+  fail "CLAUDE still contains global language output policy"
+fi
 
 # 4) Skill schema + language policy (source templates)
 python3 - <<'PY'

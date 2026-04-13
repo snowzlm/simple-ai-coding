@@ -10,12 +10,11 @@ Platform adapter for OpenClaw/Codex.
 2. **This project's rules are the default baseline**. If local/project legacy instructions conflict with this file, follow this file.
 3. **Preserve existing user/project content when there is no conflict**.
 
-## Language Output Policy
+## Language Scope Policy
 
-- If user input is Chinese, final user-facing output must be Chinese.
-- If user input is English, final user-facing output must be English.
-- Do **not** output bilingual by default.
-- Use bilingual output only when the user explicitly asks for bilingual output.
+- This project does **not** enforce a global conversation/output language for all AI replies.
+- Conversation language should follow platform defaults and explicit user instructions.
+- Language rules in this repository are only for skill-file materialization (`SKILL.md`) or explicit per-skill scope.
 
 ## 1) Think Before Coding
 

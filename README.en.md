@@ -155,6 +155,8 @@ bash scripts/materialize-skill-language.sh en
 
 After running it, `skills/universal-ai-guidelines/SKILL.md` will be a single-language file.
 
+- Note: this only materializes `SKILL.md` file language and does not globally enforce assistant conversation language.
+
 ## Platform Compatibility Tests (verified in this repo)
 
 Run:

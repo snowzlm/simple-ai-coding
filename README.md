@@ -155,6 +155,8 @@ bash scripts/materialize-skill-language.sh en
 
 执行后，`skills/universal-ai-guidelines/SKILL.md` 将是单一语言版本。
 
+- 说明：该能力仅决定 `SKILL.md` 文件落地语言，不会全局强制 AI 对话输出语言。
+
 ## 平台可用性测试（本仓库已实测）
 
 执行：
