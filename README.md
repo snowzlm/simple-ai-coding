@@ -138,6 +138,23 @@ curl -o .github/copilot-instructions.md https://raw.githubusercontent.com/snowzl
 /plugin install simple-ai-coding@simple-ai-coding
 ```
 
+## Skill 文件语言落地（用户端）
+
+为避免用户端出现“中英混合 SKILL.md”，提供按语言落地脚本：
+
+```bash
+# 自动按当前系统语言落地（LANG/LC_ALL）
+bash scripts/materialize-skill-language.sh auto
+
+# 强制中文
+bash scripts/materialize-skill-language.sh zh-CN
+
+# 强制英文
+bash scripts/materialize-skill-language.sh en
+```
+
+执行后，`skills/universal-ai-guidelines/SKILL.md` 将是单一语言版本。
+
 ## 平台可用性测试（本仓库已实测）
 
 执行：

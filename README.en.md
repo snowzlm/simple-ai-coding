@@ -138,6 +138,23 @@ curl -o .github/copilot-instructions.md https://raw.githubusercontent.com/snowzl
 /plugin install simple-ai-coding@simple-ai-coding
 ```
 
+## Skill Content Materialization (user-side)
+
+To avoid mixed bilingual `SKILL.md` on user side, use the language materializer:
+
+```bash
+# Auto-detect from LANG/LC_ALL
+bash scripts/materialize-skill-language.sh auto
+
+# Force Chinese
+bash scripts/materialize-skill-language.sh zh-CN
+
+# Force English
+bash scripts/materialize-skill-language.sh en
+```
+
+After running it, `skills/universal-ai-guidelines/SKILL.md` will be a single-language file.
+
 ## Platform Compatibility Tests (verified in this repo)
 
 Run:
