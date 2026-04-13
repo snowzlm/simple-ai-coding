@@ -118,13 +118,7 @@ curl -o AI_RULES.md https://raw.githubusercontent.com/snowzlm/simple-ai-coding/m
 curl -o AGENTS.md https://raw.githubusercontent.com/snowzlm/simple-ai-coding/main/AGENTS.md
 ```
 
-Note: OpenClaw can use `AGENTS.md`, `.skill` package flow, or OpenClaw native plugin pack; it does not use Claude plugin runtime.
-
-Build local `.skill` package:
-
-```bash
-bash scripts/build-openclaw-skill.sh
-```
+Note: OpenClaw can use `AGENTS.md` or an OpenClaw native plugin; it does not use Claude plugin runtime.
 
 ### Option C: Claude
 
@@ -146,30 +140,14 @@ curl -o .github/copilot-instructions.md https://raw.githubusercontent.com/snowzl
 /plugin install simple-ai-coding@simple-ai-coding
 ```
 
-### Option F: OpenClaw native plugin pack (optional)
+### Option F: OpenClaw native plugin (optional)
 
 ```bash
-# Dev install (link mode)
-openclaw plugins install --link ./plugins/openclaw-universal-ai-guidelines
-
-# Build tgz package
-bash scripts/build-openclaw-plugin-package.sh
-
-# Install from tgz
-openclaw plugins install ./dist/plugins/snowzlm-openclaw-universal-ai-guidelines-<version>.tgz
+# After downloading/cloning this repo, run from repo root
+openclaw plugins install ./plugins/openclaw-universal-ai-guidelines
 ```
 
-> Note: this is OpenClaw's native plugin/extension package flow, not Claude plugin runtime.
-
-#### OpenClaw plugin release-grade flow (version / package / acceptance)
-
-```bash
-# Bump version and package (patch/minor/major or explicit semver)
-bash scripts/release-openclaw-plugin.sh patch
-
-# Installation acceptance (both link + tgz paths)
-bash scripts/acceptance-openclaw-plugin.sh
-```
+> Note: this is OpenClaw native plugin flow (not Claude plugin runtime); end users do not need to package anything.
 
 ## Skill Content Materialization (user-side)
 

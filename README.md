@@ -118,13 +118,7 @@ curl -o AI_RULES.md https://raw.githubusercontent.com/snowzlm/simple-ai-coding/m
 curl -o AGENTS.md https://raw.githubusercontent.com/snowzlm/simple-ai-coding/main/AGENTS.md
 ```
 
-说明：OpenClaw 当前可使用 `AGENTS.md`、`.skill` 包，或 OpenClaw 原生插件包；不走 Claude 的插件机制。
-
-生成本地 `.skill` 包：
-
-```bash
-bash scripts/build-openclaw-skill.sh
-```
+说明：OpenClaw 当前可使用 `AGENTS.md` 或 OpenClaw 原生插件包；不走 Claude 的插件机制。
 
 ### 方式 C：Claude
 
@@ -146,30 +140,14 @@ curl -o .github/copilot-instructions.md https://raw.githubusercontent.com/snowzl
 /plugin install simple-ai-coding@simple-ai-coding
 ```
 
-### 方式 F：OpenClaw 原生插件包（可选）
+### 方式 F：OpenClaw 原生插件（可选）
 
 ```bash
-# 开发态（link）安装
-openclaw plugins install --link ./plugins/openclaw-universal-ai-guidelines
-
-# 打包为 tgz
-bash scripts/build-openclaw-plugin-package.sh
-
-# 从 tgz 安装
-openclaw plugins install ./dist/plugins/snowzlm-openclaw-universal-ai-guidelines-<version>.tgz
+# 下载/克隆仓库后，在仓库根目录执行
+openclaw plugins install ./plugins/openclaw-universal-ai-guidelines
 ```
 
-> 说明：这是 OpenClaw 的原生插件/扩展包形态，与 Claude 插件机制不同。
-
-#### OpenClaw 插件发布级流程（版本 / 打包 / 验收）
-
-```bash
-# 版本升级并打包（patch/minor/major 或显式版本号）
-bash scripts/release-openclaw-plugin.sh patch
-
-# 安装验收（link + tgz 两条链路）
-bash scripts/acceptance-openclaw-plugin.sh
-```
+> 说明：这是 OpenClaw 原生插件形态，与 Claude 插件机制不同；用户无需自行打包。
 
 ## Skill 文件语言落地（用户端）
 
