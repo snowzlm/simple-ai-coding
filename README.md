@@ -133,14 +133,18 @@ mkdir -p .github
 curl -o .github/copilot-instructions.md https://raw.githubusercontent.com/snowzlm/simple-ai-coding/main/.github/copilot-instructions.md
 ```
 
-### 方式 E：Claude 插件（可选）
+### 方式 E：Cursor
+
+本仓库包含 Cursor 项目规则：[`.cursor/rules/karpathy-guidelines.mdc`](.cursor/rules/karpathy-guidelines.mdc)。打开仓库时规则会自动应用；也可参考 [`CURSOR.md`](./CURSOR.md) 将规则复制到其他项目。
+
+### 方式 F：Claude 插件（可选）
 
 ```text
 /plugin marketplace add snowzlm/simple-ai-coding
 /plugin install simple-ai-coding@simple-ai-coding
 ```
 
-### 方式 F：OpenClaw 原生插件（可选）
+### 方式 G：OpenClaw 原生插件（可选）
 
 ```bash
 # 下载/克隆仓库后，在仓库根目录执行
