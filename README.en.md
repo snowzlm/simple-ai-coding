@@ -133,14 +133,18 @@ mkdir -p .github
 curl -o .github/copilot-instructions.md https://raw.githubusercontent.com/snowzlm/simple-ai-coding/main/.github/copilot-instructions.md
 ```
 
-### Option E: Claude plugin (optional)
+### Option E: Cursor
+
+This repo includes a Cursor project rule: [`.cursor/rules/karpathy-guidelines.mdc`](.cursor/rules/karpathy-guidelines.mdc). It applies automatically when you open the repo; see [`CURSOR.md`](./CURSOR.md) if you want to copy the rule into another project.
+
+### Option F: Claude plugin (optional)
 
 ```text
 /plugin marketplace add snowzlm/simple-ai-coding
 /plugin install simple-ai-coding@simple-ai-coding
 ```
 
-### Option F: OpenClaw native plugin (optional)
+### Option G: OpenClaw native plugin (optional)
 
 ```bash
 # After downloading/cloning this repo, run from repo root
