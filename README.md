@@ -178,9 +178,12 @@ bash scripts/materialize-skill-language.sh en
 
 ```bash
 bash scripts/test-platform-compat.sh
+bash scripts/test-openclaw-plugin-pack.sh
 ```
 
-覆盖：OpenClaw、Codex、Claude、Copilot（以及通用基线文件一致性检查）。
+覆盖：OpenClaw、Codex、Claude、Copilot（以及通用基线文件一致性检查），并额外校验 OpenClaw plugin pack 的 manifest / import / skill 路径。
+
+发布前统一检查清单见：[`RELEASE_CHECKLIST.md`](./RELEASE_CHECKLIST.md)
 
 ## 关键洞见
 

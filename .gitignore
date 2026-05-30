@@ -1,0 +1,8 @@
+.claude/
+.DS_Store
+graphify-out/cache/
+graphify-out/graph.html
+graphify-out/.graphify_root
+plugins/*/graphify-out/cache/
+plugins/*/graphify-out/graph.html
+plugins/*/graphify-out/.graphify_root
